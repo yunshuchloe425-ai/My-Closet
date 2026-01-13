@@ -1,0 +1,583 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+nav button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0.2rem;
+    transition: background-color 0.3s;
+}
+
+nav button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+main {
+    padding: 1rem;
+}
+
+.tab-content {
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-content h2 {
+    margin-bottom: 1.5rem;
+    color: #4a90e2;
+    text-align: center;
+}
+
+/* 添加衣服部分 */
+.add-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.method h3 {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+#addForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#addForm input, #addForm select, #addForm button {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#addForm button {
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#addForm button:hover {
+    background-color: #357abd;
+}
+
+.quick-templates {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.template-btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 1rem;
+}
+
+.template-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 分类浏览部分 */
+.filters {
+    margin-bottom: 2rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.filter-options button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-options button:hover, .filter-options button.active {
+    background-color: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+.clothes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.clothes-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 0.5rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.clothes-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.clothes-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+/* 场合多选样式 */
+.occasion-select {
+    margin-bottom: 1rem;
+}
+
+.occasion-select label:first-child {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+}
+
+.occasion-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.occasion-options label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.occasion-options label:hover {
+    background-color: #f0f0f0;
+}
+
+.occasion-options input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    transform: scale(1.2);
+}
+
+.no-image {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 搭配功能部分 */
+.outfit-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 992px) {
+    .outfit-container {
+        flex-direction: row;
+    }
+    
+    .outfit-section,
+    .select-section {
+        flex: 1;
+    }
+}
+
+.today-outfit h3, .select-section h3 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #555;
+}
+
+.outfit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.select-section {
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background-color: #fafafa;
+}
+
+.select-filters {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.select-filters select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    min-width: 200px;
+}
+
+.select-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.8rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.select-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.select-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #4a90e2;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(231, 76, 60, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.cloth-actions {
+    margin-top: 0.8rem;
+    text-align: center;
+}
+
+.delete-btn {
+    padding: 0.5rem 1rem;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+.remove-btn:hover {
+    background-color: rgba(231, 76, 60, 1);
+}
+
+.clothes-card {
+    position: relative;
+}
+
+.outfit-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.outfit-buttons button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#randomBtn {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#saveOutfitBtn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.outfit-buttons button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.save-to-date-btn {
+    padding: 1rem 2rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-left: 1rem;
+}
+
+.save-to-date-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-color: #357abd;
+}
+
+.delete-daily-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-left: 1rem;
+}
+
+.delete-daily-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-color: #c0392b;
+}
+
+/* 实用工具部分 */
+.tools-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.tool-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.tool-card h3 {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+#shoppingForm {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#shoppingForm input {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#shoppingForm button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+}
+
+#shoppingList {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.shopping-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* 日历样式 */
+#calendar {
+    text-align: center;
+}
+
+.calendar-header {
+    margin-bottom: 1rem;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.3rem;
+}
+
+.day-header {
+    font-weight: bold;
+    padding: 0.5rem;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.calendar-day {
+    padding: 0.8rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calendar-day:hover {
+    background-color: #f8f8f8;
+}
+
+.calendar-day.today {
+    background-color: #4a90e2;
+    color: white;
+    font-weight: bold;
+}
+
+.shopping-item button, .idle-item button {
+    background-color: transparent;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* 每日搭配部分样式 */
+.daily-outfit-section {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.daily-outfit-section h4 {
+    margin-bottom: 1rem;
+    color: #4a90e2;
+    text-align: center;
+}
+
+.daily-outfit-actions {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.daily-outfit-actions button {
+    padding: 0.8rem 1.5rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.daily-outfit-actions button:hover {
+    background-color: #357abd;
+}
+
+/* 响应式设计 */
+@media (min-width: 768px) {
+    .add-methods {
+        flex-direction: row;
+    }
+    
+    .method {
+        flex: 1;
+    }
+    
+    .tools-grid {
+        flex-direction: row;
+    }
+    
+    .tool-card {
+        flex: 1;
+    }
+}
+
+@media (min-width: 600px) {
+    .outfit-grid {
+        grid-template-columns: repeat(4, minmax(150px, 1fr));
+    }
+}

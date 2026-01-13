@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检查数据</title>
+</head>
+<body>
+    <h1>检查localStorage数据</h1>
+    <div id="dataDisplay"></div>
+    
+    <script>
+        // 显示localStorage中的数据
+        function showData() {
+            const dailyOutfits = localStorage.getItem('dailyOutfits');
+            const clothes = localStorage.getItem('clothes');
+            
+            const displayDiv = document.getElementById('dataDisplay');
+            
+            let html = '<h2>dailyOutfits数据：</h2>';
+            if (dailyOutfits) {
+                const parsedData = JSON.parse(dailyOutfits);
+                html += '<pre>' + JSON.stringify(parsedData, null, 2) + '</pre>';
+                
+                // 检查2026-01-14的数据
+                if (parsedData['2026-01-14']) {
+                    html += '<h3>2026-01-14的搭配：</h3>';
+                    html += '<pre>' + JSON.stringify(parsedData['2026-01-14'], null, 2) + '</pre>';
+                }
+            } else {
+                html += '<p>没有找到dailyOutfits数据</p>';
+            }
+            
+            html += '<h2>clothes数据：</h2>';
+            if (clothes) {
+                const parsedClothes = JSON.parse(clothes);
+                html += '<pre>' + JSON.stringify(parsedClothes, null, 2) + '</pre>';
+            } else {
+                html += '<p>没有找到clothes数据</p>';
+            }
+            
+            displayDiv.innerHTML = html;
+        }
+        
+        // 清除2026-01-14的所有搭配
+        function clearDate() {
+            if (confirm('确定要清除2026-01-14的所有搭配吗？')) {
+                const dailyOutfits = JSON.parse(localStorage.getItem('dailyOutfits') || '{}');
+                delete dailyOutfits['2026-01-14'];
+                localStorage.setItem('dailyOutfits', JSON.stringify(dailyOutfits));
+                alert('已清除2026-01-14的搭配！');
+                showData();
+            }
+        }
+        
+        // 页面加载时显示数据
+        window.onload = showData;
+    </script>
+    
+    <button onclick="clearDate()">清除2026-01-14的所有搭配</button>
+</body>
+</html>
